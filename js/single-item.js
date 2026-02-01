@@ -1,4 +1,4 @@
-import { editCompleted, removeItem } from "./app.js";
+import { editCompleted, removeItem, setEditId } from "./app.js";
 
 // Create SingleItem Element
 export function createSingleItem(item) {
@@ -26,6 +26,10 @@ export function createSingleItem(item) {
   // 3. Attach event listeners to trigger functions in app.js
   checkbox.addEventListener("change", () => editCompleted(item.id));
   removeBtn.addEventListener("click", () => removeItem(item.id));
+
+  // Add event listener for edit button
+  const editBtn = div.querySelector(".edit-btn");
+  editBtn.addEventListener("click", () => setEditId(item.id));
 
   return div;
 }
