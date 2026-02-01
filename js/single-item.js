@@ -1,8 +1,11 @@
+import { editCompleted, removeItem } from "./app.js";
+
 // Create SingleItem Element
 export function createSingleItem(item) {
   const div = document.createElement("div");
   div.className = "single-item";
 
+  // 1. Define the HTML structure based on item state
   div.innerHTML = `
     <input type="checkbox" ${item.completed ? "checked" : ""} />
     <p style="text-decoration: ${item.completed ? "line-through" : "none"}">
@@ -16,27 +19,12 @@ export function createSingleItem(item) {
     </button>
   `;
 
-  return div;
-}
-import { editCompleted } from "./app.js";
-
-function createSingleItem(item) {
-  // ....
-
-  // Add event listener for checkbox
+  // 2. Select the interactive elements inside the new div
   const checkbox = div.querySelector('input[type="checkbox"]');
-  checkbox.addEventListener("change", () => editCompleted(item.id));
-
-  return div;
-}
-
-import { editCompleted, removeItem } from "./app.js";
-
-function createSingleItem(item) {
-  // ....
-
-  // Add event listener for remove button
   const removeBtn = div.querySelector(".remove-btn");
+
+  // 3. Attach event listeners to trigger functions in app.js
+  checkbox.addEventListener("change", () => editCompleted(item.id));
   removeBtn.addEventListener("click", () => removeItem(item.id));
 
   return div;
